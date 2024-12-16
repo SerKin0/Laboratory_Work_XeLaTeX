@@ -1,0 +1,10 @@
+!img/*.tex
+!img/*.pdf
+
+!settings/*.tex
+!settings/*.pdf
+
+!src/*.tex
+!src/*.pdf
+
+.idea
