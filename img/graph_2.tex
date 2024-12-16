@@ -1,0 +1,44 @@
+\documentclass{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{fontspec}
+\pgfplotsset{width=10cm,compat=1.9}
+% Задаём шрифт
+\setmainfont{Times New Roman}
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[ 
+			width=12cm, 
+			height=8cm, 
+			xlabel={t, c}, 
+			ylabel={$A$, \text{см}}, 
+			grid=both, 
+			% Параметры для перемещения легенды
+			legend style={ 
+				at={(0.85,0.5)}, % Расположение легенды справа по центру 
+				anchor=center, 
+				font=\small
+			}
+			]
+			% Пример графика с погрешностями
+			\addplot+[
+			only marks,
+			color=blue,
+			error bars/.cd,
+			x dir=both, x explicit,
+			y dir=both, y explicit
+			] table[
+			x=x, y=y, x error=dx, y error=dy
+			] {
+				x    y    dx   dy
+				0	4	0	0
+				78    3    0.1  0.2
+				200    2  0.2
+				538    1  0.2
+			};
+			
+		\end{axis}
+	\end{tikzpicture}
+\end{document}

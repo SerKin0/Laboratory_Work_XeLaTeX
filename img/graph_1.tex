@@ -1,0 +1,48 @@
+\documentclass{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{fontspec}
+\pgfplotsset{width=10cm,compat=1.9}
+% Задаём шрифт
+\setmainfont{Times New Roman}
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=12cm,
+			height=8cm,
+			xlabel={$A$, см},
+			ylabel={$T$, с},
+			grid=both,
+			% Параметры для перемещения легенды
+			legend style={
+				at={(0.85,0.5)}, % Расположение легенды справа по центру
+				anchor=center, 
+				font=\small
+			}
+			]
+			% Первый график с погрешностями из файла data1.csv
+			\addplot+[
+			only marks,
+			color=blue,
+			error bars/.cd, 
+			x dir=both, x explicit, 
+			y dir=both, y explicit
+			] table[
+			x=x, y=y, x error=dx, y error=dy
+			] {data/1.csv};
+			\addlegendentry{\text{Пружина большая}}
+			\addplot+[
+			only marks,
+			color=red,
+			error bars/.cd, 
+			x dir=both, x explicit, y dir=both, y explicit
+			] table[
+			x=x, y=y, 
+			x error=dx, y error=dy
+			] {data/2.csv};
+			\addlegendentry{Пружина малая}
+		\end{axis}
+	\end{tikzpicture}
+\end{document}

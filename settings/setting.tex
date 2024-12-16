@@ -1,0 +1,78 @@
+% ТЕКСТ
+\setmainfont{Times New Roman} % Семейство шрифта
+
+% ЗАГАЛОВКИ
+% Настройка нумерации секций и подсекций
+\titleformat{\section}
+{\normalfont\Large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}
+{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+% Настройка заголовка section
+\titlespacing*{\section}{0pt}{15pt}{10pt} % Отступы: слева, сверху, снизу
+\titlespacing*{\subsubsection}{0pt}{0pt}{2pt} % Отступы: слева, сверху, снизу
+
+% Переопределим вывод нумерации, чтобы для subsection было в формате "0.0"
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesection.\arabic{subsubsection}}
+
+% КОЛОНТУЛЫ
+\usepackage{fancyhdr} % Подключение fancyhdr
+\pagestyle{fancy} % Установка стиля fancy для всего документа
+
+\fancyhf{} % Очистка текущих значений колонтитулов
+
+% Верхний колонтул
+\fancyhead[R]{\normalsize \mytitle} % Правый верхний колонтитул
+\fancyhead[L]{\normalsize \myauthor} % Левый верхний колонтитул
+
+\renewcommand{\headrulewidth}{1pt} % Толщина линии в верхнем колонтитуле
+
+% Нижний колонтул
+\fancyfoot[C]{\small \thepage} % Нумерация страниц снизу по центру
+\renewcommand{\footrulewidth}{0pt} % Убираем линию в нижнем колонтитуле
+
+% Уровень нумерации секций
+\setcounter{secnumdepth}{4} % Глубина нумерации секций
+
+% ПРОГРАММИРОВАНИЕ
+\lstset{
+	inputencoding=utf8,
+	extendedchars=true,
+	keepspaces=true,
+	language=Python,
+	basicstyle=\small\fontspec{JetBrains Mono}, % Задаём шрифт
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=5pt,
+	backgroundcolor=\color{white},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=2,
+	captionpos=t,
+	breaklines=true,
+	breakatwhitespace=false,
+	escapeinside={\%*}{*)}
+}
+
+% ГРАФИКИ
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+
+% ОБЪЕКТЫ
+\setlength{\columnsep}{20pt} % Устанавливаем расстояние между колонками
+\newcommand{\intro}[1]{
+	\stepcounter{section}
+	\section*{\hfillПРИЛОЖЕНИЕ \arabic{section}}
+	\begin{center}
+		\bf{#1}
+	\end{center}
+	\markboth{\MakeUppercase{#1}}{}
+	\addcontentsline{toc}{section}{Приложение \arabic{section}. #1}
+	\refstepcounter{theAppend}\par\vspace{1.5cm plus 1cm minus .5cm} {\hfill\bfПРИЛОЖЕНИЕ~\arabic{theAppend}. }
+	\begin{center} \bf\MakeUppercase{#1} \end{center}
+	\addcontentsline{toc}{section}{Приложение \arabic{theAppend}. #1}
+}

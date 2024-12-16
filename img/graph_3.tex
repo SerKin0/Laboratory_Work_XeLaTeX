@@ -1,0 +1,63 @@
+\documentclass{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{fontspec}
+\pgfplotsset{width=10cm,compat=1.9}
+% Задаём шрифт
+\setmainfont{Times New Roman}
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[ 
+			width=12cm, 
+			height=8cm, 
+			xlabel={$M$, $\text{кг}$}, 
+			ylabel={$T^*$, $c^2$}, 
+			grid=both, 
+			% Параметры для перемещения легенды
+			legend style={ 
+				at={(0.2,0.75)}, 
+				anchor=center, 
+				font=\small
+			}
+			]
+			% Пример графика с погрешностями
+			\addplot+[
+			only marks,
+			color=blue,
+			error bars/.cd,
+			x dir=both, x explicit,
+			y dir=both, y explicit
+			] table[
+			x=x, y=y, x error=dx, y error=dy
+			] {
+				x y dx dy
+				0.1	0.245	0.00065	0.108
+				0.2	0.382	0.00065	0.137
+				0.3	0.539	0.00065	0.161
+				0.4	0.683	0.00065	0.1817
+			};
+			\addlegendentry{\text{Формула $T^*=\frac{t^2}{n^2}$}}
+			
+			\addplot+[
+			only marks,
+			color=red,
+			error bars/.cd,
+			x dir=both, x explicit,
+			y dir=both, y explicit
+			] table[
+			x=x, y=y, x error=dx, y error=dy
+			] {
+				x y dx dy
+				0.1	0.161	0.00065	0.004
+				0.2	0.330	0.00065	0.004
+				0.3	0.499	0.00065	0.004
+				0.4	0.664	0.00065	0.004
+			};
+			\addlegendentry{\text{Формула $T^*=\frac{4 \pi ^2 M}{k}$}}
+			\addplot[domain=0.1:0.4, samples=2, color=red, densely dotted] {1.471*x+0.0945};
+			\addplot[domain=0.1:0.4, samples=2, color=blue, densely dotted] {1.678*x-0.006};
+		\end{axis}
+	\end{tikzpicture}
+\end{document}

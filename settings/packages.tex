@@ -1,0 +1,41 @@
+% ТЕКСТ
+\usepackage{fontspec} % Для работы с Unicode-шрифтами
+\usepackage[russian]{babel}
+\usepackage{microtype} % Улучшение типографики
+\setlength{\emergencystretch}{3em} % Предотвращение переполнений
+\usepackage{indentfirst}
+\linespread{1.25} % по умолчанию 1.0
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+
+% ЗАГАЛОВКИ
+\usepackage{titlesec} % настройка заголовков
+\usepackage{titling} % работа с именами и названием работы
+
+% КОЛОНТИТУЛЫ И ПОЛЯ
+\usepackage{fancyhdr} % Для колонтитулов
+\usepackage[a4paper, left=1cm, right=2cm, top=2cm, bottom=2cm]{geometry} % Увеличенные поля для отображения колонтулов
+
+% ФОРМУЛЫ
+\usepackage{hyperref} % Добавление ссылок
+\usepackage{amsmath, amssymb} % Математические формулы и символы
+\usepackage{graphicx} % Для использования \resizebox
+
+% ТАБЛИЦЫ
+\usepackage{multirow}
+\usepackage{tabularx, booktabs} % Таблицы
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{pgfplots}
+\usepackage{adjustbox}
+
+% ОБЪЕКТЫ
+\usepackage{afterpage, placeins} % Для управления плавающими объектами
+\usepackage{mwe} % for blindtext and example-image-a in example
+\usepackage{wrapfig}
+
+% ПРОГРАММИРОВАНИЕ
+\usepackage{multicol} % Много колонок
+\usepackage{listings} % Для вывода кода
+\usepackage{xcolor} % Для задания цветов

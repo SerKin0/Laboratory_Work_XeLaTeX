@@ -1,0 +1,40 @@
+% Для переворота страницы на 90, вставляем landscape
+\documentclass[a4paper, 14pt, twoside]{extarticle}
+
+\newcommand{\myauthor}{Скороходов С.А., Степушов Г.С.}
+\newcommand{\mytitle}{Изучение колебательного движения}
+	
+% Импортирование настроечных файлов
+\include{settings/packages.tex}
+\include{settings/setting.tex}
+
+
+\begin{document}
+	
+	% Титульный лист
+	\include{src/title.tex}
+	
+	% Содержание
+	\include{src/content.tex}
+	
+	% Введение
+	\include{src/introduction.tex}
+	
+	% Теоритическая часть
+	\include{src/theory.tex}
+	
+	% Практическая часть
+	\include{src/practice.tex}
+	
+	% Вывод
+	\include{src/conclusion.tex}
+	
+	% Вопросы
+	% \include{src/questions.tex}
+	
+	% Список используемой литературы
+	\include{src/references.tex}
+	
+	% Приложение
+	\include{src/appendix.tex}	
+\end{document}

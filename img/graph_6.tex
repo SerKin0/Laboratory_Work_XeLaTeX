@@ -1,0 +1,47 @@
+\documentclass{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{fontspec}
+\pgfplotsset{width=10cm,compat=1.9}
+% Задаём шрифт
+\setmainfont{Times New Roman}
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[ 
+			width=16cm, 
+			height=11cm, 
+			xlabel={$t$, $\text{с}$}, 
+			ylabel={$A$, $\text{см}$}, 
+			grid=both, 
+			% Параметры для перемещения легенды
+			legend style={ 
+				at={(0.8,0.8)}, 
+				anchor=center, 
+				font=\small
+			}
+			]
+			% График 1 с погрешностями
+			\addplot+[ 
+			only marks,
+			color=red,
+			error bars/.cd,
+			x dir=both, x explicit,
+			y dir=both, y explicit
+			] table[
+			x=x, y=y, x error=dx, y error=dy
+			] {
+				x y dx dy
+				0	4	0.33	0.065
+				9.7	3	0.56	0.065
+				20.7	2	0.97	0.065
+				59.7	1	6.4	0.065
+			};
+			\addlegendentry{$y = 3,6845 * e ^ {-0,023 x}$}
+			% Декоративные линии (если они нужны)
+			\addplot[domain=-5:65, samples=50, color=red, densely dotted] {3.6845 * e ^ (-0.023 * x)};
+			
+		\end{axis}
+	\end{tikzpicture}
+\end{document}
